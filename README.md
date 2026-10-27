@@ -1,29 +1,42 @@
-# HITU Smart Home Expert System
+<div align="center">
+
+# 🏠 HITU Smart Home Expert System
+
+### 🔐 Secure & Smart Living Spaces
+
+![Java](https://img.shields.io/badge/Java-Swing-orange?logo=openjdk&logoColor=white)
+![Oracle](https://img.shields.io/badge/Database-Oracle-red?logo=oracle&logoColor=white)
+![NetBeans](https://img.shields.io/badge/IDE-NetBeans-1B6AC6?logo=apachenetbeanside&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
+
+</div>
+
+---
 
 A rule-based **expert system** for smart home automation, built with **Java Swing** and **Oracle Database**. The system takes sensor/state inputs from the user, applies a set of rules, and returns a recommended **action** together with an **explanation** of why that action was chosen. Every decision is saved to a per-user history.
 
-## Features
+## ✨ Features
 
-- User registration and login
-- Four expert-system modules, each with its own rule base:
-  - **Climate Control**: AC, heater, fan, windows, and curtains based on temperature, occupancy, and window status
-  - **Lighting**: automatic lights based on motion, time of day, and no-motion duration
-  - **Security**: alarm decisions based on house mode (Home / Sleep / Away) and motion
-  - **Fire Alarm**: emergency response based on smoke sensor status and duration
-- Explanation for every decision (why the action was taken)
-- History page showing all previous decisions per user
-- Splash screen and a clean Swing GUI
+- 👤 User registration and login
+- 🧠 Four expert-system modules, each with its own rule base:
+  - 🌡️ **Climate Control**: AC, heater, fan, windows, and curtains based on temperature, occupancy, and window status
+  - 💡 **Lighting**: automatic lights based on motion, time of day, and no-motion duration
+  - 🛡️ **Security**: alarm decisions based on house mode (Home / Sleep / Away) and motion
+  - 🔥 **Fire Alarm**: emergency response based on smoke sensor status and duration
+- 📝 Explanation for every decision (why the action was taken)
+- 📜 History page showing all previous decisions per user
+- 🎨 Splash screen and a clean Swing GUI
 
-## Rules Summary
+## 📋 Rules Summary
 
 | System | Inputs | Example Rule |
 |---|---|---|
-| Climate | Temperature, user present, window status | Temp > 30°C + user present + window open → close window, turn on AC (22°C), close curtains |
-| Lighting | Motion, light status, time of day, no-motion duration | No motion for ≥ 15 min while lights are on → turn lights off |
-| Security | House mode, motion | Motion in *Sleep* or *Away* mode → trigger alarm and notify phone |
-| Fire | Smoke sensor, smoke duration (seconds) | Smoke detected for ≥ 5 seconds → alarm, notify authorities, smoke extraction |
+| 🌡️ Climate | Temperature, user present, window status | Temp > 30°C + user present + window open → close window, turn on AC (22°C), close curtains |
+| 💡 Lighting | Motion, light status, time of day, no-motion duration | No motion for ≥ 15 min while lights are on → turn lights off |
+| 🛡️ Security | House mode, motion | Motion in *Sleep* or *Away* mode → trigger alarm and notify phone |
+| 🔥 Fire | Smoke sensor, smoke duration (seconds) | Smoke detected for ≥ 5 seconds → alarm, notify authorities, smoke extraction |
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 src/
@@ -35,39 +48,26 @@ src/
 ├── smarthomeexpertsystem/   # Main class (entry point)
 ├── uisytem/                 # All Swing GUI screens
 └── icones/                  # Images / icons
+database/
+└── schema.sql               # Database tables script
 ```
 
 Each system extends the abstract class `SmartSystemModule` and implements `evaluate()`, which sets the action (`act`) and the explanation (`exp`).
 
-## Requirements
+## 🧰 Requirements
 
-- JDK 8 or later
-- Oracle Database (XE) running on `localhost:1521`
-- Oracle JDBC driver (`ojdbc8.jar`)
-- NetBeans IDE (recommended)
+- ☕ JDK 8 or later
+- 🗄️ Oracle Database (XE) running on `localhost:1521`
+- 🔌 Oracle JDBC driver (`ojdbc8.jar`)
+- 🧑‍💻 NetBeans IDE (recommended)
 
-## Database Setup
+## 🗄️ Database Setup
 
-Run the following SQL on your Oracle database:
+The database tables are defined in a separate file: [`database/schema.sql`](database/schema.sql).
 
-```sql
-CREATE TABLE home_user (
-    user_id       NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    username      VARCHAR2(50) UNIQUE NOT NULL,
-    user_password VARCHAR2(100) NOT NULL
-);
+Run that script on your Oracle database before starting the application.
 
-CREATE TABLE history (
-    history_id     NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    user_id        NUMBER REFERENCES home_user(user_id),
-    system_name    VARCHAR2(100),
-    action         VARCHAR2(1000),
-    exp            VARCHAR2(1000),
-    operation_date DATE
-);
-```
-
-## How to Run
+## 🚀 How to Run
 
 1. Clone the repository:
    ```bash
@@ -75,16 +75,25 @@ CREATE TABLE history (
    ```
 2. Open the project in NetBeans (or any Java IDE).
 3. Add `ojdbc8.jar` to the project libraries.
-4. Edit `src/common/DBConnection.java` and set your own database URL, username, and password.
-5. Run the main class: `smarthomeexpertsystem.SmartHomeExpertSystem`.
+4. Run `database/schema.sql` on your Oracle database.
+5. Edit `src/common/DBConnection.java` and set your own database URL, username, and password.
+6. Run the main class: `smarthomeexpertsystem.SmartHomeExpertSystem`.
 
-## Usage
+## 🕹️ Usage
 
 1. Wait for the splash screen, then **register** a new account and **log in**.
 2. Choose a system from the main menu (Climate, Light, Security, Fire).
 3. Enter the inputs and press **Enter** to get the recommended action and its explanation.
 4. Open **History** to review all previous decisions.
 
-## Author
+## 👨‍💻 Author
 
-**Adham Al-Amir**: HITU
+**Adham Al-Amir** 🎓 HITU
+
+---
+
+<div align="center">
+
+⭐ If you like this project, give it a star!
+
+</div>
